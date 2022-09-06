@@ -17,20 +17,41 @@ public class Blueprint {
     
     private String name=null;
 
+    /**
+     * Método constructor que nos sirve para crear una blueprint con una lista primitiva
+     * @param author Nombre del autor
+     * @param name Nombre de la blueprint
+     * @param pnts Lista de los puntos
+     */
     public Blueprint(String author,String name,Point[] pnts){
         this.author=author;
         this.name=name;
         points=Arrays.asList(pnts);
     }
-         
+
+    /**
+     * Método constructor que nos sirve para crear una blueprint con una lista de tipo List
+     * @param author Nombre del autor
+     * @param name Nombre de la blueprint
+     * @param pnts Lista de los puntos
+     */
+    public Blueprint(String author,String name,List<Point> pnts){
+        this.author=author;
+        this.name=name;
+        points=pnts;
+    }
+
+    /**
+     * Método constructor que nos sirve para crear una blueprint sin lista de puntos
+     * @param author Nombre del autor
+     * @param name Nombre de la blueprint
+     */
     public Blueprint(String author, String name){
         this.author = author;
         this.name=name;
         points=new ArrayList<>();
     }
 
-    public Blueprint() {
-    }    
     
     public String getName() {
         return name;
@@ -42,6 +63,10 @@ public class Blueprint {
     
     public List<Point> getPoints() {
         return points;
+    }
+
+    public void setPoints(List<Point> points){
+        this.points = points;
     }
     
     public void addPoint(Point p){

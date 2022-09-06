@@ -15,10 +15,7 @@ import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author hcadavid
- */
+
 public class InMemoryPersistenceTest {
     
     @Test

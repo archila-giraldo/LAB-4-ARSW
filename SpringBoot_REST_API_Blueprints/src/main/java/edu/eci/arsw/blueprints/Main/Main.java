@@ -17,7 +17,6 @@ public class Main {
         Blueprint blueprint = new Blueprint("Camilo", "blueprint", pnts);
         bluePrintService.addNewBlueprint(blueprint);
         System.out.println(bluePrintService.getBlueprintsByAuthor("Camilo"));
-        Blueprint blueprint1 = bluePrintService.Filtroredundante(blueprint);
     }
 
 }

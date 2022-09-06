@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Tuple<T1, T2> {
 
-    T1 o1;
-    T2 o2;
+    private T1 o1;
+    private T2 o2;
 
     public Tuple(T1 o1, T2 o2) {
         super();
