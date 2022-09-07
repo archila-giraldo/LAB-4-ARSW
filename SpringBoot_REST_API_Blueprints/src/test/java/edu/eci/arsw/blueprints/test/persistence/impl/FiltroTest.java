@@ -5,6 +5,7 @@ import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.persistence.Filter;
+import edu.eci.arsw.blueprints.persistence.impl.FiltradoSubmuestreo;
 import edu.eci.arsw.blueprints.persistence.impl.FiltroRedundante;
 import edu.eci.arsw.blueprints.persistence.impl.Tuple;
 import edu.eci.arsw.blueprints.services.BlueprintsServices;
@@ -23,7 +24,7 @@ public class FiltroTest {
      * Verificamos que el filtro elimina la redundancia de los puntos
      */
     public void shouldFilterRedundancy() throws BlueprintPersistenceException, BlueprintNotFoundException {
-        BlueprintsServices bps = new BlueprintsServices();
+        FiltroRedundante filtro = new FiltroRedundante();
         List<Point> pts = new ArrayList<>();
         List<Point> pts2;
         List<Point> noRedundancyPoints = new ArrayList<>();
@@ -43,14 +44,12 @@ public class FiltroTest {
         }
         //Creamos la blueprint para aplicar el filtro
         bp = new Blueprint("Prueba 1","Prueba 1",pts);
-        bps.addNewBlueprint(bp);
-        bp = bps.getBlueprint("Prueba1","Prueba1");
+        bp = filtro.filtro(bp);
         pts = bp.getPoints();
         //Creamos una segunda blueprint en vez de comparar los datos directamente dado a que el metodo de filtrado tambien los ordena
         //y de esta forma es mas sencilla la comparación
         bp2 = new Blueprint("Prueba 2","Prueba 2",noRedundancyPoints);
-        bps.addNewBlueprint(bp2);
-        bp2 = bps.getBlueprint("Prueba 2","Prueba 2");
+        bp2 = filtro.filtro(bp2);
         pts2 = bp2.getPoints();
 
         //Comparamos dato por dato las dos listas de puntos dado que son ordenadas
@@ -66,7 +65,7 @@ public class FiltroTest {
 
     @Test
     public void shouldFilterSubSampling() throws BlueprintPersistenceException, BlueprintNotFoundException {
-        BlueprintsServices bps = new BlueprintsServices();
+        FiltradoSubmuestreo filtro = new FiltradoSubmuestreo();
         List<Point> pts = new ArrayList<>();
         List<Point> subSamplePoints = new ArrayList<>();
         Random rm = new Random();
@@ -83,8 +82,7 @@ public class FiltroTest {
         }
 
         bp = new Blueprint("Prueba 1","Prueba 1",pts);
-        bps.addNewBlueprint(bp);
-        bp = bps.getBlueprint("Prueba1","Prueba1");
+        bp = filtro.filtro(bp);
         pts = bp.getPoints();
 
         for(int i = 0; i < pts.size();i++){
